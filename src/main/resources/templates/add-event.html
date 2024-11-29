@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lisää uusi tapahtuma</title>
+</head>
+<body>
+<h1>Lisää uusi tapahtuma</h1>
+<form th:action="@{/events/add}" th:object="${event}" method="post">
+    <label for="name">Tapahtuman nimi:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+    <br>
+    <label for="time">Aika:</label>
+    <input type="time" id="time" th:field="*{time}" required>
+    <br>
+    <label for="dayOfWeek">Viikonpäivä:</label>
+    <select id="dayOfWeek" th:field="*{dayOfWeek}" required>
+        <option value="MAANANTAI">Maanantai</option>
+        <option value="TIISTAI">Tiistai</option>
+        <option value="KESKIVIIKKO">Keskiviikko</option>
+        <option value="TORSTAI">Torstai</option>
+        <option value="PERJANTAI">Perjantai</option>
+        <option value="LAUANTAI">Lauantai</option>
+        <option value="SUNNUNTAI">Sunnuntai</option>
+    </select>
+    <br>
+    <label for="category">Kategoria:</label>
+    <select id="category" th:field="*{category}" required>
+        <option th:each="category : ${categories}"
+                th:value="${category}"
+                th:text="${category.name}">
+        </option>
+    </select>
+    <br>
+    <button type="submit">Tallenna</button>
+</form>
+<a href="/events">Peruuta</a>
+</body>
+</html>

@@ -17,13 +17,13 @@ import javax.persistence.ManyToOne;
 public class Event extends AbstractPersistable<Long> {
 
     @Column(nullable = false)
-    private String nimi;
+    private String name;
 
     @Column(nullable = false)
-    private String paivamaara;
+    private String dayOfWeek;
 
     @Column(nullable = false)
-    private String aika;
+    private String time;
 
     @ManyToOne
     @JoinColumn(name= "category_id", nullable = false) // yhdistää tämän eventin kategoria tauluun
@@ -31,9 +31,12 @@ public class Event extends AbstractPersistable<Long> {
 }
 
 // nullable = false on siksi, että se estää vahingossa tapahtuvat
-//virheet jos kenttä jätetään tyhjäksi
+// virheet jos kenttä jätetään tyhjäksi
 
-
+// Tässä kamaa Applicationiin,
+// katso myöhemmin autentikoinnin yhteydessä,
+// mitä kannattaa käyttää:
+//
 //spring.datasource.url=jdbc:h2:file:./database;create=true
 //spring.jpa.hibernate.ddl-auto=update
 //spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect

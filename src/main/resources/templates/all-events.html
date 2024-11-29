@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Viikon tapahtumat</title>
+</head>
+<body>
+<h1>Viikon tapahtumat</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Maanantai</th>
+        <th>Tiistai</th>
+        <th>Keskiviikko</th>
+        <th>Torstai</th>
+        <th>Perjantai</th>
+        <th>Lauantai</th>
+        <th>Sunnuntai</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <div th:each="event : ${eventsByDay['Maanantai']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+        <td>
+            <div th:each="event : ${eventsByDay['Tiistai']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+        <td>
+            <div th:each="event : ${eventsByDay['Keskiviikko']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+        <td>
+            <div th:each="event : ${eventsByDay['Torstai']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+        <td>
+            <div th:each="event : ${eventsByDay['Perjantai']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+        <td>
+            <div th:each="event : ${eventsByDay['Lauantai']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+        <td>
+            <div th:each="event : ${eventsByDay['Sunnuntai']}">
+                <p th:text="${event.name}"></p>
+                <p th:text="${event.date}"></p>
+                <p th:text="${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/events/add">Lisää uusi tapahtuma</a>
+<a href="/">Palaa aloitussivulle</a>
+</body>
+</html>
