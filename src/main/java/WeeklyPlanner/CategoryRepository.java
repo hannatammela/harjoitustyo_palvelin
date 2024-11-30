@@ -9,7 +9,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 //      toiminnot pois?
 //
 //      //Vaihtoehtoisia tapoja lisätä CategoryRepositoryyn
-//      // nämä:
+//      // nämä::
 //
 //    // Estetään kategorioiden poisto
 //    @Override

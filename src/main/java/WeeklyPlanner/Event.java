@@ -31,6 +31,6 @@ public class Event extends AbstractPersistable<Long> {
 }
 
 // nullable = false on siksi, että se estää vahingossa tapahtuvat
-// virheet jos kenttä jätetään tyhjäksi
+// virheet jos kenttä jätetään tyhjäksi..
 
 

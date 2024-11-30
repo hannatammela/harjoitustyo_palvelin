@@ -14,7 +14,7 @@ public class SecurityConfig {
                         .anyRequest().permitAll() // Sallitaan pääsy kaikille sivustoille
                 )
                 .csrf().disable() // H2 Console tarvitsee CSRF:n poiston
-                .headers().frameOptions().disable(); // Sallitaan kehykset (frames), joita H2 Console käyttää
+                .headers().frameOptions().disable(); // Sallitaan kehykset (frames), joita H2 Console käyttää.
         return http.build();
     }
 }

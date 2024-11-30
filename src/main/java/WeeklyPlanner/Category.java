@@ -26,7 +26,7 @@ public class Category extends AbstractPersistable<Long> {
     // Yksiparametrinen konstruktori, jotta saadaan
     // kategoriat luotua CategoryControlleriin.
     // Lombok ei luo tätä automaattisesti, niin
-    // siksi pitää itse määritellä.
+    // siksi pitää itse määritellä..
     public Category(String name) {
         this.name = name;
     }

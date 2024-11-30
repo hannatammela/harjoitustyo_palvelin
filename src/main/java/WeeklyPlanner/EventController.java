@@ -45,7 +45,7 @@ public class EventController {
         return "all-events";
     }
 
-    // Virhekäsittely lisätty, jos tapahtumaa ei löydy
+    // Virhekäsittely lisätty, jos tapahtumaa ei löydy.
     @GetMapping("/{id}")
     public String getEventById(@PathVariable Long id, Model model) {
         Event event = eventRepository.findById(id)
@@ -55,7 +55,7 @@ public class EventController {
     }
 
     // Luo tyhjän Event-objektin.
-    // Lomakkeessa valintalistana
+    // Lomakkeessa valintalistana.
     @GetMapping("/add")
     public String addEventForm(Model model) {
         model.addAttribute("event", new Event());

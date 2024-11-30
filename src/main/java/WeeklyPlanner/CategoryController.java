@@ -16,7 +16,7 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
     // Tallentaa kategoriat jo valmiiksi kun sovellus käynnistetään
-    // Category.javassa yksiparametrinen kontruktori new Categoryn
+    // Category.javassa yksiparametrinen kontruktori new Categoryn.
     // luomiseen
     @PostConstruct
     public void ordinaryCategories() {
