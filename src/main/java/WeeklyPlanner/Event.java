@@ -33,18 +33,4 @@ public class Event extends AbstractPersistable<Long> {
 // nullable = false on siksi, että se estää vahingossa tapahtuvat
 // virheet jos kenttä jätetään tyhjäksi
 
-// Tässä kamaa Applicationiin,
-// katso myöhemmin autentikoinnin yhteydessä,
-// mitä kannattaa käyttää:
-//
-//spring.datasource.url=jdbc:h2:file:./database;create=true
-//spring.jpa.hibernate.ddl-auto=update
-//spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
 
-//spring.application.name=harjoitustyo_palvelin
-//spring.datasource.url=jdbc:h2:mem:testdb
-//spring.datasource.driverClassName=org.h2.Driver
-//spring.datasource.username=sa
-//spring.datasource.password=sa
-//spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-//spring.h2.console.enabled=true

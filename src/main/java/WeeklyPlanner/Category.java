@@ -20,6 +20,14 @@ public class Category extends AbstractPersistable<Long> {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     private List<Event> events = new ArrayList<>();
+
+    // Yksiparametrinen konstruktori, jotta saadaan
+    // kategoriat luotua CategoryControlleriin.
+    // Lombok ei luo tätä automaattisesti, niin
+    // siksi pitää itse määritellä.
+    public Category(String name) {
+        this.name = name;
+    }
 }

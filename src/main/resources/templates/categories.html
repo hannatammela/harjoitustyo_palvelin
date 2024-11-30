@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kategoriat ja tapahtumat</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Tapahtumat kategorioittain</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <!-- Kategoriat yläosassa -->
+        <th th:each="category : ${categories}" th:text="${category.name}">Kategoria</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <!-- Tapahtumat kategorioittain -->
+        <td th:each="category : ${categories}">
+            <div th:each="event : ${category.events}">
+                <p><b th:text="${event.name}"></b></p>
+                <p th:text="${event.time}"></p>
+                <p th:text="${event.dayOfWeek}"></p>
+                <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/events/add">Lisää uusi tapahtuma</a>
+<a href="/">Palaa aloitussivulle</a>
+</body>
+</html>

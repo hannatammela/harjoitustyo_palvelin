@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tapahtuman tiedot</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Tapahtuman tiedot</h1>
+<p><strong>Nimi:</strong> <span th:text="${event.name}"></span></p>
+<p><strong>Viikonpäivä:</strong> <span th:text="${event.dayOfWeek}"></span></p>
+<p><strong>Aika:</strong> <span th:text="${event.time}"></span></p>
+<p><strong>Kategoria:</strong> <span th:text="${event.category.name}"></span></p>
+<a th:href="@{/events}">Palaa takaisin</a>
+</body>
+</html>
