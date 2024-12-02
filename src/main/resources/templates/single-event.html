@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Tapahtuman tiedot:</title>
+    <title>Tapahtuman tiedot</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -10,6 +10,7 @@
 <p><strong>Viikonpäivä:</strong> <span th:text="${event.dayOfWeek}"></span></p>
 <p><strong>Aika:</strong> <span th:text="${event.time}"></span></p>
 <p><strong>Kategoria:</strong> <span th:text="${event.category.name}"></span></p>
+<a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa tapahtumaa</a>
 <a th:href="@{/events}">Palaa takaisin</a>
 </body>
 </html>

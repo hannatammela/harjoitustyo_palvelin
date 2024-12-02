@@ -4,7 +4,7 @@
     <title>Viikon tapahtumat</title>
 </head>
 <body>
-<h1>Viikon tapahtumat:</h1>
+<h1>Viikon tapahtumat</h1>
 <link rel="stylesheet" href="/css/style.css">
 <table border="1">
     <thead>
@@ -21,65 +21,81 @@
     <tbody>
     <tr>
         <td>
-            <div th:each="event : ${eventsByDay['MAANANTAI']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['MAANANTAI']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
         <td>
-            <div th:each="event : ${eventsByDay['TIISTAI']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['TIISTAI']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
         <td>
-            <div th:each="event : ${eventsByDay['KESKIVIIKKO']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['KESKIVIIKKO']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
         <td>
-            <div th:each="event : ${eventsByDay['TORSTAI']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['TORSTAI']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
         <td>
-            <div th:each="event : ${eventsByDay['PERJANTAI']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['PERJANTAI']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
         <td>
-            <div th:each="event : ${eventsByDay['LAUANTAI']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['LAUANTAI']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
         <td>
-            <div th:each="event : ${eventsByDay['SUNNUNTAI']}">
-                <p th:text="${event.name}"></p>
+            <div th:each="event, stat : ${eventsByDay['SUNNUNTAI']}">
+                <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a>
                 <p th:text="${event.time}"></p>
-                <p th:text="${event.category.name}"></p>
+                <p th:text="'#' + ${event.category.name}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
     </tr>
     </tbody>
 </table>
 <a href="/events/add">Lisää uusi tapahtuma</a>
+<a href="/categories">Katso kategorioittain</a>
 <a href="/">Palaa aloitussivulle</a>
+<a href="/logout">Kirjaudu ulos</a>
 </body>
 </html>

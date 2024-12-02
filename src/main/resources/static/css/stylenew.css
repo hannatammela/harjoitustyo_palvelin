@@ -4,7 +4,6 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
 h1 {
@@ -13,39 +12,32 @@ h1 {
     margin-top: 20px;
 }
 
-a {
-    text-decoration: none;
-    color: #6d6875;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-a:hover {
-    color: #b5838d;
-}
-
-table {
-    width: 80%;
+form {
+    width: 60%;
     margin: 20px auto;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    background-color: #fefcfb;
-}
-
-th, td {
-    text-align: center;
-    vertical-align: middle; /* Keskittää tekstin myös pystysuunnassa */
-    padding: 10px;
+    padding: 20px;
+    background-color: #ffffff;
     border: 1px solid #e2e0de;
+    border-radius: 8px;
 }
 
-th {
-    background-color: #f2d7d5;
+label {
+    display: block;
+    margin-bottom: 5px;
     color: #6d6875;
     font-weight: bold;
 }
 
-td {
+input[type="text"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e0de;
+    border-radius: 5px;
+    background-color: #f9f7f6;
+    font-size: 14px;
     color: #403d39;
 }
 
@@ -57,9 +49,20 @@ button {
     font-size: 14px;
     color: #6d6875;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 button:hover {
     background-color: #ffb3a7;
     color: #403d39;
+}
+
+a {
+    text-decoration: none;
+    color: #6d6875;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #b5838d;
 }

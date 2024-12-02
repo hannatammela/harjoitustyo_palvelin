@@ -10,3 +10,5 @@ public class HarjoitustyoPalvelinApplication {
 		SpringApplication.run(HarjoitustyoPalvelinApplication.class, args);
 	}
 }
+
+

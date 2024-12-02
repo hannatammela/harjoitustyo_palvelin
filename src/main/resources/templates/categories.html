@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Kategoriat ja tapahtumat:</title>
+    <title>Kategoriat ja tapahtumat</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>Tapahtumat kategorioittain:</h1>
+<h1>Tapahtumat kategorioittain</h1>
 <table border="1">
     <thead>
     <tr>
         <!-- Kategoriat yläosassa -->
-        <th th:each="category : ${categories}" th:text="${category.name}">Kategoria</th>
+        <th th:each="category : ${categories}" th:text="'#' + ${category.name}">Kategoria</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <!-- Tapahtumat kategorioittain -->
         <td th:each="category : ${categories}">
-            <div th:each="event : ${category.events}">
-                <p><b th:text="${event.name}"></b></p>
+            <div th:each="event, stat : ${category.events}">
+                <p><a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}"></a></p>
                 <p th:text="${event.time}"></p>
                 <p th:text="${event.dayOfWeek}"></p>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
                 <a th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                <div th:if="${!stat.last}" style="border-bottom: 2px solid #ccc; margin: 10px 0;"></div>
             </div>
         </td>
     </tr>
     </tbody>
 </table>
 <a href="/events/add">Lisää uusi tapahtuma</a>
+<a href="/events">Katso viikkonäkymä</a>
 <a href="/">Palaa aloitussivulle</a>
+<a href="/logout">Kirjaudu ulos</a>
 </body>
 </html>

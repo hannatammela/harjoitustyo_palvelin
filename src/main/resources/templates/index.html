@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Aloitussivu:</title>
+    <title>Aloitussivu</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Tervetuloa Kalenterisovellukseen</h1>
-<p>Valitse toiminto:</p>
-<ul>
-    <li><a href="/events">Kaikki tapahtumat</a></li>
-    <li><a href="/categories">Tapahtumat kategorioittain</a></li>
-    <li><a href="/events/add">Lisää uusi tapahtuma</a></li>
-</ul>
+<p>Valitse toiminto</p>
+<div class="link.-container">
+    <a href="/events">Kaikki tapahtumat</a>
+    <a href="/categories">Tapahtumat kategorioittain</a>
+    <a href="/events/add">Lisää uusi tapahtuma</a>
+    <a href="/logout">Kirjaudu ulos</a>
+</div>
 </body>
 </html>

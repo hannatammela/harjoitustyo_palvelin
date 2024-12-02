@@ -28,6 +28,10 @@ public class Event extends AbstractPersistable<Long> {
     @ManyToOne
     @JoinColumn(name= "category_id", nullable = false) // yhdistää tämän eventin kategoria tauluun
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private AppUser user;
 }
 
 // nullable = false on siksi, että se estää vahingossa tapahtuvat
