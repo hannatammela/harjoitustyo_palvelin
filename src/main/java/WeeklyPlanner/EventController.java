@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,11 +23,14 @@ public class EventController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private AppUserRepository appUserRepository;
+
 
     @GetMapping
     public String showAllEvents(Authentication authentication, Model model) {
         String username = authentication.getName();
-        List<Event> events = eventRepository.findAllByOrderByTimeAsc();
+        List<Event> events = eventRepository.findByUserUsernameOrderByTimeAsc(username);
 
         // Luo eventsByDay listan, jossa kaikki viikonpäivät
         Map<String, List<Event>> eventsByDay = new HashMap<>();
@@ -62,16 +67,30 @@ public class EventController {
     }
 
     // Tallentaa uuden tapahtuman
-    // Tallennetaan eventRepository.save(event)
+    // VALIDOINTI @Valid katsoo, että entiteetin
+    // kentät vastaa asetettuja sääntöjä
+    // BindingResult sisältää tiedot validointivirheestä
     @PostMapping("/add")
-    public String addNewEvent(@ModelAttribute Event event, @RequestParam Long category, Authentication authentication) {
+    public String addNewEvent(@Valid @ModelAttribute Event event,
+                              BindingResult bindingResult,
+                              @RequestParam Long category,
+                              Authentication authentication,
+                              Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
+            model.addAttribute("daysOfWeek", List.of("MAANANTAI", "TIISTAI", "KESKIVIIKKO", "TORSTAI", "PERJANTAI", "LAUANTAI", "SUNNUNTAI"));
+            // Jos tulee virheitä, ohjataan tänne:
+            return "add-event";
+        }
+
         String username = authentication.getName();
-        AppUser currentUser = new AppUser();
-        currentUser.setUsername(username);
+        AppUser currentUser = appUserRepository.findByUsername(username);
         event.setUser(currentUser);
-        // Haetaan kategoria ID:n perusteella
+
+        // VALIDOINTI; kategorian täytyy olla tietokannassa:
         Category selectedCategory = categoryRepository.findById(category)
                 .orElseThrow(() -> new RuntimeException("Kategoriaa ei löydy."));
+
         event.setCategory(selectedCategory); // Asetetaan Event-objektiin oikea Category
         event.setDayOfWeek(event.getDayOfWeek().toUpperCase());
         eventRepository.save(event); // Tallennetaan tapahtuma
@@ -89,8 +108,11 @@ public class EventController {
     // Muokattava tapahtuma haetaan id:n perusteella
     @GetMapping("/edit/{id}")
     public String editEvent(@PathVariable Long id, Model model) {
+
+        // VALIDOINTI; Tapahtuma löytyy tietokannasta
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tapahtumaa ei löydy."));
+
         model.addAttribute("event", event);
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("daysOfWeek", List.of("MAANANTAI", "TIISTAI", "KESKIVIIKKO", "TORSTAI", "PERJANTAI", "LAUANTAI", "SUNNUNTAI"));

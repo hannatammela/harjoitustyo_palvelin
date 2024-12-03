@@ -9,7 +9,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+
+// SYÖTTEIDEN VALIDOINTI; käytetty tässä luokassa
+// tehtävänannossa vaaditulla tavalla.
 @Entity
 @Data
 @NoArgsConstructor
@@ -17,12 +22,16 @@ import javax.persistence.ManyToOne;
 public class Event extends AbstractPersistable<Long> {
 
     @Column(nullable = false)
+    @NotBlank(message = "Nimi ei saa olla tyhjä.")
+    @Size(min = 1, max = 20, message = "Nimi saa olla max 20 merkkiä.")
     private String name;
 
     @Column(nullable = false)
+    @NotBlank(message = "Päivä ei saa olla tyhjä.")
     private String dayOfWeek;
 
     @Column(nullable = false)
+    @NotBlank(message = "Aika ei saa olla tyhjä.")
     private String time;
 
     @ManyToOne

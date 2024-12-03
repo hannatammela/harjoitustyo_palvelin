@@ -2,20 +2,27 @@
     <label for="name">Tapahtuman nimi</label>
     <link rel="stylesheet" href="/css/stylenew.css">
     <input type="text" id="name" th:field="*{name}" required>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
     <br>
+
     <label for="dayOfWeek">Viikonpäivä</label>
     <select id="dayOfWeek" th:field="*{dayOfWeek}" required>
         <option th:each="day : ${daysOfWeek}" th:value="${day}" th:text="${day}"></option>
     </select>
+    <div th:if="${#fields.hasErrors('dayOfWeek')}" th:errors="*{dayOfWeek}"></div>
     <br>
-    <label for="time">Aika:</label>
+
+    <label for="time">Aika</label>
     <input type="time" id="time" th:field="*{time}" required>
+    <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
     <br>
+
     <label for="category">Kategoria</label>
     <select id="category" name="category" required>
         <option th:each="category : ${categories}"
                 th:value="${category.id}"
                 th:text="${category.name}">
+            <div th:if="${categoryError != null}" th:text="${categoryError}"></div>
         </option>
     </select>
     <br>
