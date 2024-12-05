@@ -42,18 +42,17 @@ select {
 }
 
 button {
-    background-color: #ffc9b9;
+    background-color: #f2d7d5;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 14px;
     color: #6d6875;
     cursor: pointer;
-    margin-right: 10px;
 }
 
 button:hover {
-    background-color: #ffb3a7;
+    background-color: #f4cec8;
     color: #403d39;
 }
 

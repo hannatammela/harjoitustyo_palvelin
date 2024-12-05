@@ -12,9 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+// Mallintaa tapahtumat tietokantaa varten.
 
 // SYÖTTEIDEN VALIDOINTI; käytetty tässä luokassa
 // tehtävänannossa vaaditulla tavalla.
+
+// nullable = false on siksi, että se estää vahingossa tapahtuvat
+// virheet jos kenttä jätetään tyhjäksi
 @Entity
 @Data
 @NoArgsConstructor
@@ -39,11 +43,10 @@ public class Event extends AbstractPersistable<Long> {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
+    @JoinColumn(name="user_id", nullable = false) // yhdistää tämän eventin appuser tauluun
     private AppUser user;
 }
 
-// nullable = false on siksi, että se estää vahingossa tapahtuvat
-// virheet jos kenttä jätetään tyhjäksi..
+
 
 

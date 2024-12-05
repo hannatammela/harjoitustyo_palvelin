@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Aloitussivu</title>
     <link rel="stylesheet" href="/css/style.css">
+    <title>Aloitussivu</title>
 </head>
 <body>
 <h1>Tervetuloa Kalenterisovellukseen</h1>
-<p>Valitse toiminto</p>
-<div class="link.-container">
-    <a href="/events">Kaikki tapahtumat</a>
-    <a href="/categories">Tapahtumat kategorioittain</a>
-    <a href="/events/add">Lisää uusi tapahtuma</a>
-    <a href="/logout">Kirjaudu ulos</a>
+<br>
+<h3>Valitse haluamasi toiminto</h3>
+<div class="button-container">
+    <form action="/events" method="get">
+        <button type="submit">Kaikki tapahtumat</button>
+    </form>
+
+    <form action="/categories" method="get">
+        <button type="submit">Tapahtumat kategorioittain</button>
+    </form>
+
+    <form action="/events/add" method="get">
+        <button type="submit">Lisää uusi tapahtuma</button>
+    </form>
+
+    <form action="/logout" method="post">
+        <button type="submit">Kirjaudu ulos</button>
+    </form>
+
 </div>
 </body>
 </html>

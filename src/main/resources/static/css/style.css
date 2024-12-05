@@ -13,6 +13,12 @@ h1 {
     margin-top: 20px;
 }
 
+h3 {
+    text-align: center;
+    color: #6d6875;
+    margin-top: 20px;
+}
+
 a {
     text-decoration: none;
     color: #6d6875;
@@ -50,7 +56,7 @@ td {
 }
 
 button {
-    background-color: #ffc9b9;
+    background-color: #f2d7d5;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -60,6 +66,14 @@ button {
 }
 
 button:hover {
-    background-color: #ffb3a7;
+    background-color: #f4cec8;
     color: #403d39;
 }
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+

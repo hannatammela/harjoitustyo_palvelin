@@ -9,27 +9,33 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+// Suojausasetukset.
+// Määrittää kirjautumisen, uloskirjautumisen ja pääsyrajoitukset
 @Configuration
 public class SecurityConfig {
 
-    // final -> Vältetään silmukkavirhe
-    private final CustomUserDetailsService userDetailsService;
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
 
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
+    // securityFilterChain on yhteensopiva Spring 5.7:ssä, joten
+    // se on valittu tähän moocin materiaalin WebSecurityConfigurerAdapter sijaan
+    // Käytössäni on Spring Boot 2.7.13 ja se Spring Security 5.7. joten tämä toteutettu
+    // oli hyvä tapa saada Securitypuolikin toimimaan.
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(authorize -> authorize
+        http.authorizeHttpRequests(authorize -> authorize
                         .antMatchers("/h2-console/**").permitAll() // H2-tietokanta sallittu
                         .anyRequest().authenticated() // Kaikki polut suojataan
                 )
                 .formLogin(form -> form
-                .defaultSuccessUrl("/", true) // Onnistunut kirjautuminen -> siirrytään index.html
-                .permitAll()
-        )
+                        .defaultSuccessUrl("/", true) // Onnistunut kirjautuminen -> siirrytään index.html
+                        .permitAll()
+                )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login") // Uloskirjautuminen -> takaisin kirjautumissivulle
                         .invalidateHttpSession(true) // Suljetaan istunto
@@ -42,13 +48,9 @@ public class SecurityConfig {
         return http.build();
     }
 
+    // Salasanojen salaamiseen käytetty enkooderi
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    public AuthenticationManagerBuilder authenticationManagerBuilder(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-        return auth;
     }
 }

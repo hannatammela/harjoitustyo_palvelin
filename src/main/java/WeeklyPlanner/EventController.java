@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Lisää, muokkaa, näyttä, poistaa ja listaa tapahtumat
+
 @Controller
 @RequestMapping("/events")
 public class EventController {
@@ -26,7 +28,7 @@ public class EventController {
     @Autowired
     private AppUserRepository appUserRepository;
 
-
+    // Näyttää kaikki tapahtumat käyttäjän mukaan ryhmiteltynä viikonpäivittäin.
     @GetMapping
     public String showAllEvents(Authentication authentication, Model model) {
         String username = authentication.getName();
@@ -47,7 +49,7 @@ public class EventController {
         return "all-events";
     }
 
-    // Haetaan id:n mukaan
+    // Haetaan id:n mukaan yksittäinen tapahtuma
     @GetMapping("/{id}")
     public String getEventById(@PathVariable Long id, Model model) {
         Event event = eventRepository.findById(id)
@@ -56,7 +58,7 @@ public class EventController {
         return "single-event";
     }
 
-    // Lisää tyhjän lomakkeen tapahtumalle
+    // Tyhjä lomake tapahtumalle
     @GetMapping("/add")
     public String addEventForm(Model model) {
         model.addAttribute("event", new Event());
@@ -76,6 +78,7 @@ public class EventController {
                               @RequestParam Long category,
                               Authentication authentication,
                               Model model) {
+        // Validointia
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryRepository.findAll());
             model.addAttribute("daysOfWeek", List.of("MAANANTAI", "TIISTAI", "KESKIVIIKKO", "TORSTAI", "PERJANTAI", "LAUANTAI", "SUNNUNTAI"));
@@ -91,25 +94,25 @@ public class EventController {
         Category selectedCategory = categoryRepository.findById(category)
                 .orElseThrow(() -> new RuntimeException("Kategoriaa ei löydy."));
 
-        event.setCategory(selectedCategory); // Asetetaan Event-objektiin oikea Category
+        event.setCategory(selectedCategory);
         event.setDayOfWeek(event.getDayOfWeek().toUpperCase());
-        eventRepository.save(event); // Tallennetaan tapahtuma
+        eventRepository.save(event);
         return "redirect:/events";
     }
 
-    // Poistetaan tapahtuma
+    // Poistaa tapahtuman
     @GetMapping("delete/{id}")
     public String deleteEvent(@PathVariable Long id) {
         eventRepository.deleteById(id);
         return "redirect:/events";
     }
 
-    // Lomake muokkaamiselle
-    // Muokattava tapahtuma haetaan id:n perusteella
+    // Näyttää ja päivittää olemassa olevan tapahtuman.
+    // Muokattava tapahtuma haetaan id:n perusteella getillä.
     @GetMapping("/edit/{id}")
-    public String editEvent(@PathVariable Long id, Model model) {
+    public String eventFormEdit(@PathVariable Long id, Model model) {
 
-        // VALIDOINTI; Tapahtuma löytyy tietokannasta
+        // VALIDOINTI; Tapahtuman löydyttävä tietokannasta
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tapahtumaa ei löydy."));
 
@@ -119,7 +122,7 @@ public class EventController {
         return "edit-event";
     }
 
-    // Päivitetään jo luotu tapahtuma
+    // Päivitetään jo luotu tapahtuma postilla
     @PostMapping("/edit/{id}")
     public String editEvent(@PathVariable Long id, @ModelAttribute Event editedEvent, @RequestParam Long category) {
         Event oldEvent = eventRepository.findById(id)

@@ -1,17 +1,21 @@
 <form th:action="@{/events/edit/{id}(id=${event.id})}" th:object="${event}" method="post">
-    <label for="name">Tapahtuman nimi:</label>
     <link rel="stylesheet" href="/css/stylenew.css">
+    <label for="name">Tapahtuman nimi</label>
     <input type="text" id="name" th:field="*{name}" required>
     <br>
-    <label for="dayOfWeek">Viikonpäivä:</label>
+    <label for="dayOfWeek">Viikonpäivä</label>
     <select id="dayOfWeek" th:field="*{dayOfWeek}" required>
         <option th:each="day : ${daysOfWeek}" th:value="${day}" th:text="${day}"></option>
     </select>
+    <div th:if="${#fields.hasErrors('dayOfWeek')}" th:errors="*{dayOfWeek}">Virhe: valitse viikonpäivä.</div>
     <br>
-    <label for="time">Aika:</label>
+
+    <label for="time">Aika</label>
     <input type="time" id="time" th:field="*{time}" required>
+    <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Virhe: Anna aika muodossa hh:mm.</div>
     <br>
-    <label for="category">Kategoria:</label>
+
+    <label for="category">Kategoria</label>
     <select id="category" name="category" required>
         <option value="" disabled selected>Valitse kategoria</option>
         <option th:each="category : ${categories}"
@@ -19,6 +23,7 @@
                 th:text="${category.name}"></option>
     </select>
     <br>
+
     <button type="submit">Tallenna muutokset</button>
     <a href="/events">Peruuta</a>
 </form>

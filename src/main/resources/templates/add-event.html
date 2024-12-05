@@ -1,20 +1,21 @@
 <form th:action="@{/events/add}" th:object="${event}" method="post">
-    <label for="name">Tapahtuman nimi</label>
     <link rel="stylesheet" href="/css/stylenew.css">
+    <label for="name">Tapahtuman nimi</label>
     <input type="text" id="name" th:field="*{name}" required>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <!-- Alla näkyy virheviesit käyttäjälle // validointiin liittyvää -->
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Virhe: Anna tapahtuman nimi. Enintään 20 merkkiä. </div>
     <br>
 
     <label for="dayOfWeek">Viikonpäivä</label>
     <select id="dayOfWeek" th:field="*{dayOfWeek}" required>
         <option th:each="day : ${daysOfWeek}" th:value="${day}" th:text="${day}"></option>
     </select>
-    <div th:if="${#fields.hasErrors('dayOfWeek')}" th:errors="*{dayOfWeek}"></div>
+    <div th:if="${#fields.hasErrors('dayOfWeek')}" th:errors="*{dayOfWeek}">Virhe: Valitse viikonpäivä.</div>
     <br>
 
     <label for="time">Aika</label>
     <input type="time" id="time" th:field="*{time}" required>
-    <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
+    <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Virhe: Anna aika muodossa hh:mm.</div>
     <br>
 
     <label for="category">Kategoria</label>

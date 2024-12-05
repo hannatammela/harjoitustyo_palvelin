@@ -9,15 +9,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+// Vastaa käyttäjien lataamisesta tietokannasta autentikointia varten
+// Käyttäjätiedot haetaan tietokannasta
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final AppUserRepository appUserRepository;
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     public CustomUserDetailsService(AppUserRepository appUserRepository) {
         this.appUserRepository = appUserRepository;
     }
 
+    // Hakee käyttäjänimen perusteella käyttäjän tiedot
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findByUsername(username);
