@@ -19,6 +19,7 @@ public class SecurityConfig {
     private CustomUserDetailsService userDetailsService;
 
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
+
         this.userDetailsService = userDetailsService;
     }
 

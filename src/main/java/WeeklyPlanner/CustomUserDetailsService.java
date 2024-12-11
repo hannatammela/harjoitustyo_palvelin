@@ -19,6 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private AppUserRepository appUserRepository;
 
     public CustomUserDetailsService(AppUserRepository appUserRepository) {
+
         this.appUserRepository = appUserRepository;
     }
 
